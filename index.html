@@ -28,7 +28,7 @@
 <body>
   <fieldset>
     <legend>Error Calculator</legend>
-    <input type="number" name="first-num" id="first-num" />
+    <input type="text" name="first-num" id="first-num" />
     <select name="operator" id="operator">
       <option>+</option>
       <option>-</option>
@@ -62,7 +62,13 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      try {
+        output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (error) {
+        console.error("Conversion Error: Value converted to NaN");
+      } finally {
+        console.log("computed");
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
@@ -149,6 +155,23 @@
       const deeper = () => { deepest(); };
       const deepest = () => { console.trace(); };
       traceTest();
+      e.preventDefault();
+    });
+
+    class myError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = message;
+      }
+    }
+
+    // Global Error
+    errorBtns[10].addEventListener('click', (e) => {
+      try {
+        throw new myError("ReferenceError: boom is not defined");
+      } catch (err) {
+        console.error(err.name);
+      }
       e.preventDefault();
     });
 
