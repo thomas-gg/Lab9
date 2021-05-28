@@ -67,6 +67,91 @@
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
     // TODO - Make buttons functional
+    console.log(errorBtns);
+
+    // Console Log Demo
+    errorBtns[0].addEventListener('click', (e) => {
+      console.log("this was clicked");
+      e.preventDefault();
+    });
+
+    // Console Error Demo
+    errorBtns[1].addEventListener('click', (e) => {
+      console.error("this was clicked");
+      e.preventDefault();
+    });
+
+    // Console Dir
+    errorBtns[2].addEventListener('click', (e) => {
+      let obj = {
+        cool: "haha, yeah!"
+      }
+      console.dir(obj);
+      e.preventDefault();
+    });
+
+    // Console dirxml
+    errorBtns[3].addEventListener('click', (e) => {
+      console.dirxml(document.getElementById('operator'));
+      e.preventDefault();
+    });
+
+    // Console Group Start
+    errorBtns[4].addEventListener('click', (e) => {
+      console.group('Log Group');
+      e.preventDefault();
+    });
+
+    // Console Group End
+    errorBtns[5].addEventListener('click', (e) => {
+      console.groupEnd('Log Group');
+      e.preventDefault();
+    });
+
+    // Console Group Table
+    errorBtns[6].addEventListener('click', (e) => {
+      let tableElem = [
+        {
+          name: "Software Engineering",
+          number: 110
+        },
+        {
+          name: "Programming Languages",
+          number: 120
+        },
+        {
+          name: "Advanced Software Engineering",
+          number: 121300
+        },
+      ]
+      console.table(tableElem);
+      e.preventDefault();
+    });
+
+    // Start Timer
+    errorBtns[7].addEventListener('click', (e) => {
+      console.log("Timer Started");
+      console.time();
+      e.preventDefault();
+    });
+
+    // End Timer
+    errorBtns[8].addEventListener('click', (e) => {
+      console.log("Timer Ended");
+      console.timeEnd();
+      e.preventDefault();
+    });
+
+    // Console Trace
+    errorBtns[9].addEventListener('click', (e) => {
+      const traceTest = () => { deep(); };
+      const deep = () => { deeper(); };
+      const deeper = () => { deepest(); };
+      const deepest = () => { console.trace(); };
+      traceTest();
+      e.preventDefault();
+    });
+
   </script>
 </body>
 </html>
